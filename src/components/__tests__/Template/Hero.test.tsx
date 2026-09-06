@@ -8,38 +8,23 @@ describe('Hero', () => {
     render(<Hero />);
 
     const heroSection = document.querySelector('.hero');
+
     expect(heroSection).toBeInTheDocument();
   });
 
-  it('displays the name as heading', () => {
+  it('displays my name as the main heading', () => {
     render(<Hero />);
 
     const heading = screen.getByRole('heading', { level: 1 });
-    expect(heading).toHaveTextContent("Michael D'Angelo");
+
+    expect(heading).toHaveTextContent('M NIVAS REDDY');
   });
 
-  it('describes the current work and Promptfoo joining OpenAI', () => {
+  it('displays my professional introduction', () => {
     const { container } = render(<Hero />);
 
-    const openAiLink = screen.getByRole('link', { name: /openai/i });
-    expect(openAiLink).toHaveAttribute('href', 'https://openai.com');
-    expect(openAiLink).toHaveClass('hero-highlight');
-
-    const promptfooLink = screen.getByRole('link', { name: /promptfoo/i });
-    expect(promptfooLink).toHaveAttribute('href', 'https://promptfoo.dev');
-    expect(promptfooLink).toHaveClass('hero-highlight');
-
-    const codexSecurityLink = screen.getByRole('link', {
-      name: 'Codex Security',
-    });
-    expect(codexSecurityLink).toHaveAttribute(
-      'href',
-      'https://openai.com/index/codex-security-now-in-research-preview/',
-    );
-    expect(codexSecurityLink).toHaveClass('hero-highlight');
-
     expect(container.querySelector('.hero-tagline')).toHaveTextContent(
-      "I'm a Member of the Technical Staff at OpenAI, working on Promptfoo and Codex Security. I help secure AI systems and use AI to find software vulnerabilities. I co-founded Promptfoo before it joined OpenAI in 2026.",
+      'I am M Nivas Reddy, a Senior Web Developer specializing in HTML, CSS, and JavaScript. I build responsive, user-friendly websites with a strong focus on clean design, functionality, and modern web experiences.'
     );
   });
 
@@ -55,14 +40,20 @@ describe('Hero', () => {
     expect(screen.queryByText('Stanford ICME')).not.toBeInTheDocument();
   });
 
-  it('renders one primary CTA and one quieter resume link', () => {
+  it('renders one primary CTA and one resume link', () => {
     render(<Hero />);
 
-    const aboutButton = screen.getByRole('link', { name: /about me/i });
+    const aboutButton = screen.getByRole('link', {
+      name: /about me/i,
+    });
+
     expect(aboutButton).toHaveAttribute('href', '/about');
     expect(aboutButton).toHaveClass('button');
 
-    const resumeButton = screen.getByRole('link', { name: /view resume/i });
+    const resumeButton = screen.getByRole('link', {
+      name: /view resume/i,
+    });
+
     expect(resumeButton).toHaveAttribute('href', '/resume');
     expect(resumeButton).toHaveClass('hero-resume-link');
     expect(resumeButton).not.toHaveClass('button');
@@ -72,6 +63,7 @@ describe('Hero', () => {
     render(<Hero />);
 
     const bg = document.querySelector('.hero-bg');
+
     expect(bg).toBeInTheDocument();
     expect(bg).toHaveAttribute('aria-hidden', 'true');
   });

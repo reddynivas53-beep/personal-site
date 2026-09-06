@@ -6,15 +6,17 @@ import {
   ageAt,
   ageIntervalFor,
   agePlaceholder,
-  BIRTH_DATE,
   MS_PER_YEAR,
 } from '../telemetry';
 
 const COMPACT_PRECISION = 8;
 
-describe('ageAt', () => {
-  const birthTime = new Date(BIRTH_DATE).getTime();
+// Test-only birth date.
+// This is not used as personal profile information.
+const TEST_BIRTH_DATE = '2000-01-01T00:00:00.000Z';
+const birthTime = new Date(TEST_BIRTH_DATE).getTime();
 
+describe('ageAt', () => {
   it('returns zero at the moment of birth', () => {
     expect(ageAt(birthTime, 2)).toBe('0.00');
   });
@@ -27,9 +29,11 @@ describe('ageAt', () => {
     const now = birthTime + MS_PER_YEAR * 36.5;
 
     expect(ageAt(now, 0)).toBe('37');
+
     expect(ageAt(now, COMPACT_PRECISION).split('.')[1]).toHaveLength(
       COMPACT_PRECISION,
     );
+
     expect(ageAt(now, AGE_PRECISION_FULL).split('.')[1]).toHaveLength(
       AGE_PRECISION_FULL,
     );
@@ -56,8 +60,10 @@ describe('ageIntervalFor', () => {
 
 describe('agePlaceholder', () => {
   it('matches the width of a real reading so the layout cannot shift', () => {
-    const birthTime = new Date(BIRTH_DATE).getTime();
-    const reading = ageAt(birthTime + MS_PER_YEAR * 36, COMPACT_PRECISION);
+    const reading = ageAt(
+      birthTime + MS_PER_YEAR * 36,
+      COMPACT_PRECISION,
+    );
 
     expect(agePlaceholder(COMPACT_PRECISION)).toHaveLength(reading.length);
   });

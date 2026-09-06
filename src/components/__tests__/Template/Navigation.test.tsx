@@ -5,6 +5,7 @@ import Navigation from '../../Template/Navigation';
 
 // Mock usePathname to control active state
 const mockPathname = vi.fn();
+
 vi.mock('next/navigation', () => ({
   usePathname: () => mockPathname(),
 }));
@@ -31,9 +32,11 @@ describe('Navigation', () => {
 
   it('renders the logo link to home', () => {
     render(<Navigation />);
+
     const logo = screen.getByRole('link', {
-      name: /michael d'angelo.*home/i,
+      name: /m nivas reddy.*home/i,
     });
+
     expect(logo).toHaveAttribute('href', '/');
   });
 
@@ -45,52 +48,80 @@ describe('Navigation', () => {
     ).toBeInTheDocument();
   });
 
-  it('renders only primary navigation routes', () => {
+  it('renders the primary navigation routes', () => {
     render(<Navigation />);
 
-    expect(screen.getByRole('link', { name: /about/i })).toBeInTheDocument();
-    expect(screen.getByRole('link', { name: /resume/i })).toBeInTheDocument();
-    expect(screen.getByRole('link', { name: /writing/i })).toBeInTheDocument();
-    expect(screen.getByRole('link', { name: /contact/i })).toBeInTheDocument();
     expect(
-      screen.queryByRole('link', { name: /archive/i }),
+      screen.getByRole('link', { name: /about/i }),
+    ).toBeInTheDocument();
+
+    expect(
+      screen.getByRole('link', { name: /resume/i }),
+    ).toBeInTheDocument();
+
+    expect(
+      screen.getByRole('link', { name: /projects/i }),
+    ).toBeInTheDocument();
+
+    expect(
+      screen.getByRole('link', { name: /contact/i }),
+    ).toBeInTheDocument();
+
+    expect(
+      screen.queryByRole('link', { name: /writing/i }),
     ).not.toBeInTheDocument();
+
     expect(
       screen.queryByRole('link', { name: /stats/i }),
+    ).not.toBeInTheDocument();
+
+    expect(
+      screen.queryByRole('link', { name: /archive/i }),
     ).not.toBeInTheDocument();
   });
 
   it('marks home route as active when on homepage', () => {
     mockPathname.mockReturnValue('/');
+
     render(<Navigation />);
 
-    // About link should not be active
-    const aboutLink = screen.getByRole('link', { name: /about/i });
+    const aboutLink = screen.getByRole('link', {
+      name: /about/i,
+    });
+
     expect(aboutLink).not.toHaveClass('active');
   });
 
   it('marks about route as active when on about page', () => {
     mockPathname.mockReturnValue('/about');
+
     render(<Navigation />);
 
-    const aboutLink = screen.getByRole('link', { name: /about/i });
+    const aboutLink = screen.getByRole('link', {
+      name: /about/i,
+    });
+
     expect(aboutLink).toHaveClass('active');
     expect(aboutLink).toHaveAttribute('aria-current', 'page');
   });
 
   it('marks nested routes as active', () => {
     mockPathname.mockReturnValue('/resume/skills');
+
     render(<Navigation />);
 
-    const resumeLink = screen.getByRole('link', { name: /resume/i });
+    const resumeLink = screen.getByRole('link', {
+      name: /resume/i,
+    });
+
     expect(resumeLink).toHaveClass('active');
   });
 
   it('renders theme toggle and hamburger menu', () => {
     render(<Navigation />);
 
-    // Theme toggle should be present (placeholder initially due to SSR)
     const navActions = document.querySelector('.nav-actions');
+
     expect(navActions).toBeInTheDocument();
   });
 });

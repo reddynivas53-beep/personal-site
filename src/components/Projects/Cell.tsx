@@ -12,13 +12,14 @@ export default function Cell({ data }: CellProps) {
   const { title, subtitle, link, image, date, desc, tech, featured } = data;
 
   const hasLink = Boolean(link);
+  const hasDate = Boolean(date) && dayjs(date).isValid();
 
   const cardContent = (
     <>
       <div className="project-card-image">
         <Image
           src={image}
-          alt=""
+          alt={`${title} project`}
           width={PROJECT_IMAGE.width}
           height={PROJECT_IMAGE.height}
           sizes="(max-width: 600px) 100vw, 50vw"
@@ -28,11 +29,13 @@ export default function Cell({ data }: CellProps) {
       <div className="project-card-content">
         <header className="project-card-header">
           <h3 className="project-card-title">{title}</h3>
+
           {hasLink && (
             <span className="project-card-affordance" aria-hidden="true">
               ↗
             </span>
           )}
+
           {subtitle && <p className="project-card-subtitle">{subtitle}</p>}
         </header>
 
@@ -48,16 +51,24 @@ export default function Cell({ data }: CellProps) {
           </div>
         )}
 
-        <time className="project-card-date" dateTime={date}>
-          {dayjs(date).format('YYYY')}
-        </time>
+        {hasDate && (
+          <time className="project-card-date" dateTime={date}>
+            {dayjs(date).format('YYYY')}
+          </time>
+        )}
       </div>
     </>
   );
 
   return (
     <article
-      className={`project-card ${featured ? 'project-card--featured' : ''} ${hasLink ? 'project-card--linked' : 'project-card--static'}`}
+      className={`project-card ${
+        featured ? 'project-card--featured' : ''
+      } ${
+        hasLink
+          ? 'project-card--linked'
+          : 'project-card--static'
+      }`}
     >
       {hasLink ? (
         <a href={link} className="project-card-link" aria-label={title}>
