@@ -7,17 +7,19 @@ import References from '@/components/Resume/References';
 import ResumeNav from '@/components/Resume/ResumeNav';
 import Skills from '@/components/Resume/Skills';
 import PageWrapper from '@/components/Template/PageWrapper';
+
 import profile from '@/data/profile.json';
 import courses from '@/data/resume/courses';
 import degrees from '@/data/resume/degrees';
 import { categories, skills } from '@/data/resume/skills';
 import work from '@/data/resume/work';
+
 import { createPageMetadata } from '@/lib/metadata';
 import { AUTHOR_NAME, SITE_URL } from '@/lib/utils';
 
 export const metadata: Metadata = createPageMetadata({
   title: 'Resume',
-  description: `${AUTHOR_NAME}'s Resume. OpenAI, Promptfoo, Smile ID, Arthena, Matroid, Stanford ICME, YC alum.`,
+  description: `${AUTHOR_NAME}'s Resume. Software Developer with 3 years of experience building modern web applications and AI-powered solutions.`,
   path: '/resume/',
 });
 
@@ -27,26 +29,36 @@ export default function ResumePage() {
       <section className="resume-page">
         <header className="resume-header">
           <h1 className="resume-title">Resume</h1>
+
           <p className="resume-summary">
-             years building products across AI,
-            security, and infrastructure. I&apos;m currently a Member of the
-            Technical Staff at OpenAI, working on Promptfoo and Codex Security.
-            I help secure AI systems and use AI to find software
-            vulnerabilities. I co-founded Promptfoo before it joined OpenAI in
-            2026. Stanford MS, YC alum, previously VP Engineering.
+            Software developer with 3 years of experience building modern web
+            applications and AI-powered solutions. I enjoy creating practical
+            projects using React, JavaScript, Node.js, Express.js, and MySQL.
+            I am continuously learning new technologies and improving my
+            software development and problem-solving skills.
           </p>
-          {/* Print-only, but real markup rather than CSS `content`, so it is
-              selectable, linkable, and reads from the shared profile. The
-              screen layout carries these in the footer, which print hides. */}
+
+          {/* Print-only contact information */}
           <address className="resume-print-contact">
-            <a href={`${SITE_URL}/`}>{SITE_URL.replace(/^https?:\/\//, '')}</a>
+            <a href={`${SITE_URL}/`}>
+              {SITE_URL.replace(/^https?:\/\//, '')}
+            </a>
+
             <span aria-hidden="true"> · </span>
+
             <a href={`mailto:${profile.email}`}>{profile.email}</a>
+
             <span aria-hidden="true"> · </span>
-            <a href="https://github.com/mldangelo">github.com/mldangelo</a>
+
+            <a
+              href="https://github.com/reddynivas53-beep"
+              target="_blank"
+              rel="noreferrer"
+            >
+              github.com/reddynivas53-beep
+            </a>
           </address>
-        </header></header>
-Engineering-focused software developer passionate about building modern web applications and AI-powered solutions. I enjoy creating practical projects using React, JavaScript, Node.js, Express.js, and MySQL. I am continuously learning new technologies and improving my software development and problem-solving skills.
+        </header>
 
         <ResumeNav />
 
