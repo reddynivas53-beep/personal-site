@@ -17,15 +17,25 @@ const data: Project[] = [
     tech: ["HTML", "CSS", "JavaScript"],
     link: "https://www.gurucharaninteriors.in/", // ✅ Live site
     image: "/images/projects/gurucharan-interiors.jpg", // ✅ Fixed path
-    date: "2024",
+    date: "2026",
     featured: true,
   },
+  {
+  title: "PeerTutor",
+  subtitle: "Peer-to-Peer Tutoring Marketplace",
+  link: "https://client-two-alpha-31.vercel.app/",
+  image: "/images/projects/peer-tutor.jpg",
+  date: "2026",
+  desc: "A peer-to-peer tutoring marketplace where students can discover tutors, view tutor profiles, explore available time slots, and book tutoring sessions.",
+  tech: ["React", "Node.js", "Express.js", "MySQL"],
+  featured: true,
+},
   {
     title: 'AI StudyBuddy',
     subtitle: 'AI-powered study assistant',
     link: 'https://your-aistudybuddy-url.vercel.app', // ⚠️ REPLACE WITH YOUR ACTUAL LIVE URL
     image: '/images/projects/aistudybuddy.jpg',
-    date: '',
+    date: '2026',
     desc: 'An AI-powered study assistant designed to support students with learning, AI tutoring, summarization, flashcards, and study activities.',
     tech: ['HTML', 'CSS', 'JavaScript', 'AI'],
     featured: true,
@@ -45,7 +55,7 @@ const data: Project[] = [
   subtitle: 'Weather information web application',
   link: 'https://new-ei6q.vercel.app', // ✅ Only ONE link line
   image: '/images/projects/weatherapp.jpg',
-  date: '',
+  date: '2026',
   desc: 'A weather application that provides current weather conditions and forecast information through a clean and user-friendly interface.',
   tech: ['HTML', 'CSS', 'JavaScript', 'API'],
   featured: true,
