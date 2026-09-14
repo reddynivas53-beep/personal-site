@@ -28,7 +28,7 @@ export default function ResumePage() {
         <header className="resume-header">
           <h1 className="resume-title">Resume</h1>
           <p className="resume-summary">
-            Engineering leader with 15+ years building products across AI,
+             years building products across AI,
             security, and infrastructure. I&apos;m currently a Member of the
             Technical Staff at OpenAI, working on Promptfoo and Codex Security.
             I help secure AI systems and use AI to find software
@@ -45,7 +45,8 @@ export default function ResumePage() {
             <span aria-hidden="true"> · </span>
             <a href="https://github.com/mldangelo">github.com/mldangelo</a>
           </address>
-        </header>
+        </header></header>
+Engineering-focused software developer passionate about building modern web applications and AI-powered solutions. I enjoy creating practical projects using React, JavaScript, Node.js, Express.js, and MySQL. I am continuously learning new technologies and improving my software development and problem-solving skills.
 
         <ResumeNav />
 
